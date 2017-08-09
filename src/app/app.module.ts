@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -18,6 +19,8 @@ import { RegistroComponent } from './components/sistema/registro/registro.compon
 import { UsuariosComponent } from './components/sistema/usuarios/usuarios.component';
 import { MenuComponent } from './components/sistema/menu/menu.component';
 import { PedidosComponent } from './components/sistema/pedidos/pedidos.component';
+
+import {ProductoService} from './services/producto.service';
 
 
 @NgModule({
@@ -40,10 +43,13 @@ import { PedidosComponent } from './components/sistema/pedidos/pedidos.component
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     HttpModule,
     routing,
   ],
-  providers: [],
+  providers: [
+    ProductoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
