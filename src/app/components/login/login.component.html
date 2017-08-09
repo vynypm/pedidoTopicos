@@ -1,22 +1,41 @@
-<div class="jumbotron">
-  <div class="container">
-    <div class="col-sm-8 col-sm-offset-2">
-      <div class="col-md-6 col-md-offset-3">
-        <h2>Login</h2>
+<div class="container">
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-6">
+      <div class="alert alert-info" role="alert">
+        <strong></strong>
 
-        <div class="form-group" >
-          <label for="username">Username</label>
-          <input type="text" class="form-control" name="username"  />
+        <div class="card-block  text-center">
+
+          <h4 class="card-title" >Inicio de Sesión</h4>
+          <hr>
+          <img src="../../../../assets/img/avatar.jpg" class="rounded-circle"  height="150" width="150">
+          <br>
+          <br>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Usuario" aria-describedby="basic-addon1">
+          </div>
+          <div class="input-group">
+            <input type="password" class="form-control" placeholder="Contraseña" aria-describedby="basic-addon1">
+          </div>
+          <br>
+
+          <a [routerLink]="['/perfil']" class="btn btn-success btn-lg btn-block">Ingresar</a>
+          <br>
+
+
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" name="password" />
-        </div>
-        <div >
-          <a [routerLink]="['/perfil']" class="btn btn-link">Ingresar</a>
-        </div>
+
+
 
       </div>
+      <div class="col-sm-3">
+      </div>
     </div>
+
   </div>
+
 </div>

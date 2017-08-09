@@ -22,6 +22,8 @@ import { PedidosComponent } from './components/sistema/pedidos/pedidos.component
 
 import {ProductoService} from './services/producto.service';
 
+//servicios
+import { UsuarioService } from './services/usuario.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import {ProductoService} from './services/producto.service';
     routing,
   ],
   providers: [
-    ProductoService
+    ProductoService,
+    UsuarioService
+
   ],
   bootstrap: [AppComponent]
 })
