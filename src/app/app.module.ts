@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HeaderComponent } from './components/shared/header/header.component';
+import { InfoPedidosComponent } from './components/shared/info-pedidos/info-pedidos.component';
 import { ServicesComponent } from './components/shared/services/services.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { LoginComponent } from './components/login/login.component';
@@ -25,6 +26,7 @@ import {ProductoService} from './services/producto.service';
 //servicios
 import { UsuarioService } from './services/usuario.service';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +43,7 @@ import { UsuarioService } from './services/usuario.service';
     UsuariosComponent,
     MenuComponent,
     PedidosComponent,
+    InfoPedidosComponent,
 
   ],
   imports: [
