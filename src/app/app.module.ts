@@ -26,6 +26,8 @@ import {ProductoService} from './services/producto.service';
 //servicios
 import { UsuarioService } from './services/usuario.service';
 
+import { UsuarioFooterService } from './services/usuario.footer.service';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import { UsuarioService } from './services/usuario.service';
   ],
   providers: [
     ProductoService,
-    UsuarioService
+    UsuarioService,
+    UsuarioFooterService
 
   ],
   bootstrap: [AppComponent]
