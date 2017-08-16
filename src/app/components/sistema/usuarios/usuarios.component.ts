@@ -10,6 +10,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class UsuariosComponent implements OnInit {
 
+  id: string;
 
 
 
@@ -31,23 +32,46 @@ export class UsuariosComponent implements OnInit {
               private _activatedRoute: ActivatedRoute) {
 
 
+    this._activatedRoute.params.subscribe(
+      parametros => {
+        this.id = parametros['id'];
+        if (this.id !== 'nuevo') {
+          this._usuarioService.getUsuario(this.id).subscribe(
+            resultado => {
+              this.usuario = resultado;
+            }
+          );
+        }
+      }
+    );
+
   }
 
   ngOnInit() {
   }
   guardar() {
 
-    if ( this.usuario.password == this.usuario.password1) {
-      this._usuarioService.nuevoUsuarioSails(this.usuario).subscribe(
-        resp => {
-          console.log(resp);
-        });
-    }else {
-      console.log('las contraseñas no coiciden');
+    if (this.id == 'nuevo') {
+
+      if (this.usuario.password == this.usuario.password1) {
+        this._usuarioService.nuevoUsuario(this.usuario).subscribe(
+          resp => {
+            console.log(resp);
+            this._router.navigate(['/usuarios']);
+          });
+      } else {
+        console.log('las contraseñas no coiciden');
+      }
+
+    } else {
+
+      this._usuarioService.editarUsuario(this.usuario, this.id).subscribe(
+        resultado => {
+          this._router.navigate(['/usuarios']);
+        }
+      );
     }
 
   }
-
 }
-
 

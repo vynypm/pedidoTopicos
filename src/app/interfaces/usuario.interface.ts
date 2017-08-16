@@ -9,7 +9,7 @@ export interface Usuario {
   rol: string;
   telefono: string;
   img: string;
-  key$?: string;
+  //key$?: string;
 
 
 

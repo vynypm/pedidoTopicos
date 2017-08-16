@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Usuario } from '../interfaces/usuario.interface';
 import 'rxjs/Rx';
 
@@ -14,7 +14,7 @@ export class UsuarioService {
   }
 
 
-  nuevoUsuarioSails(usuario: Usuario) {
+  nuevoUsuario(usuario: Usuario) {
 
     return this._http.post(this.usuarioSails,JSON.stringify(usuario)).map(
 
@@ -24,47 +24,47 @@ export class UsuarioService {
     );
   }
 
-  getUsuarioSails(indice: string) {
-    let urls = `${this.usuarioSails}/${ indice}`;
-    return this._http.get(urls)
-      .map(
-        res => {
-          return res.json();
-        }
-      );
-  }
-
-
-
-  // editarUsuarioSails(usuario: Usuario, id: string) {
-  //
-  //   let url = `${this.usuarioSails}/${id}`;
-  //   return this._http.put(url, body, {headers: headers}).map(
-  //     resultado => {
-  //       return resultado.json;
-  //     }
-  //   );
-  // }
-  //
-  //
-  // eliminarUsuarioSails(key$: string) {
-  //   let url = `${this.usuarioSails}/${key$}`;
-  //   return this._http.delete(url)
-  //     .map(
-  //       res => {
-  //         return res.json();
-  //       }
-  //     );
-  // }
-  consultarUsuariosSails() {
+  consultarUsuarios() {
     return this._http.get(this.usuarioSails)
       .map(
+        respuesta => {
+          return respuesta.json();
+        }
+      );
+  }
+
+  editarUsuario(producto: Usuario, id: string) {
+    let body= JSON.stringify(producto);
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    let url = `${this.usuarioSails}/${id }`;
+    return this._http.put(url, body, {headers: headers}).map(
+      resultado => {
+        return resultado.json;
+      }
+    );
+  }
+
+  getUsuario(indice: string) {
+    let url = `${this.usuarioSails}/${ indice }`;
+    return this._http.get(url)
+      .map(
         res => {
           return res.json();
         }
       );
   }
 
+  eliminarUsuario(key$: string) {
+    let url = `${this.usuarioSails}/${key$}`;
+    return this._http.delete(url)
+      .map(
+        res => {
+          return res.json();
+        }
+      );
+  }
 
 
 }

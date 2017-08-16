@@ -27,6 +27,7 @@ import {ProductoService} from './services/producto.service';
 import { UsuarioService } from './services/usuario.service';
 
 import { UsuarioFooterService } from './services/usuario.footer.service';
+import { AdministracionComponent } from './components/sistema/administracion/administracion.component';
 
 
 @NgModule({
@@ -46,6 +47,7 @@ import { UsuarioFooterService } from './services/usuario.footer.service';
     MenuComponent,
     PedidosComponent,
     InfoPedidosComponent,
+    AdministracionComponent,
 
   ],
   imports: [
