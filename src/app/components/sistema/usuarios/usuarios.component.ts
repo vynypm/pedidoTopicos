@@ -13,7 +13,6 @@ export class UsuariosComponent implements OnInit {
 
 
 
-  id: string;
   usuario: Usuario = {
     nombre: '',
     apellido: '',
@@ -30,45 +29,25 @@ export class UsuariosComponent implements OnInit {
   constructor(private _usuarioService: UsuarioService,
               private _router: Router,
               private _activatedRoute: ActivatedRoute) {
-    this._activatedRoute.params.subscribe(
-      parametros => {
-        this.id = parametros['id'];
-        if (this.id !== 'nuevo') {
-          this._usuarioService.getUsuarioSails(this.id).subscribe(
-            resultado => {
-              this.usuario = resultado;
-            }
-          );
-        }
-      }
-    );
+
+
   }
 
   ngOnInit() {
   }
-
-
   guardar() {
-    console.log(this.usuario);
 
-    if (this.id == 'nuevo') {
-
+    if ( this.usuario.password == this.usuario.password1) {
       this._usuarioService.nuevoUsuarioSails(this.usuario).subscribe(
-        resultado => {
-          console.log(resultado);
-          this._router.navigate(['/usuario', resultado.id]);
-
-
-        }
-      );
+        resp => {
+          console.log(resp);
+        });
     }else {
-      this._usuarioService.editarUsuarioSails(this.usuario, this.id).subscribe(
-        resultado => {
-          this._router.navigate(['/usuarios' ]);
-        }
-      );
+      console.log('las contraseñas no coiciden');
     }
+
   }
+
 }
 
 
