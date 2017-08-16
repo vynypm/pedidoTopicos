@@ -20,7 +20,7 @@ const appRoutes: Routes = [
   { path: 'perfil', component: PerfilComponent },
   { path: 'menu', component: MenuComponent },
   { path: 'pedidos', component: PedidosComponent },
-  { path: 'registro', component: RegistroComponent },
+  { path: 'registro/:id', component: RegistroComponent },
   { path: 'usuarios', component: UsuariosComponent },
 
   // otherwise redirect to home

@@ -21,17 +21,17 @@
                    [(ngModel)]="producto.nombre">
           </div>
         </div>
-        <!--<div class="form-group row">
+        <div class="form-group row">
           <div class="col">
             <label class="col-2 col-form-label">Imagen:</label>
           </div>
           <div class="col">
             <input class="form-control" type="text"
                    name="imagen"
-                   placeholder="imagen"
-                   [(ngModel)]="producto.url">
+                   placeholder="Url imagen"
+                   [(ngModel)]="producto.imagen">
           </div>
-        </div>-->
+        </div>
         <div class="form-group row">
           <div class="col">
             <label class="col-2 col-form-label">Categoria:</label>
@@ -39,11 +39,8 @@
           <div class="col">
             <select class="form-control"
                     name="catergoria"
-                    [(ngModel)]="producto.categoria">
-              <option value="Almuerzos">Almuerzos</option>
-              <option value="Bebidas">Bebidas</option>
-              <option value="Snacks">Snacks</option>
-              <option value="Postres">Postres</option>
+                    [(ngModel)]="producto.categoria" >
+              <option *ngFor="let item of listaCategorias" [value]="item.nombre_categoria">{{item.nombre_categoria}}</option>
             </select>
           </div>
         </div>
@@ -70,17 +67,7 @@
                    [(ngModel)]="producto.descripcion">
           </div>
         </div>
-        <!--<div class="form-group row">
-          <div class="col">
-            <label class="col-2 col-form-label">Stock:</label>
-          </div>
-          <div class="col">
-            <input class="form-control" type="number"
-                   name="stock"
-                   placeholder="0"
-                   [(ngModel)]="producto.cantidad">
-          </div>
-        </div>-->
+
         <div class="form-group row">
           <div class="col">
             <button type="submit" class="btn btn-info">

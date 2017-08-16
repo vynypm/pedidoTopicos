@@ -10,29 +10,79 @@ import {Router, ActivatedRoute} from '@angular/router';
   templateUrl: './registro.component.html'
 })
 export class RegistroComponent implements OnInit {
-
+  id: string;
+  listaCategorias: any [] = [];
   producto: Producto = {
     categoria: "",
     nombre: "",
-    precio: null,
+    precio: 0,
     descripcion: "",
+    imagen: ""
   }
 
   constructor(private _productoServices: ProductoService,
               private _router: Router,
-              private _activatedRoute: ActivatedRoute) { }
+              private _activatedRoute: ActivatedRoute) {
+    console.log("registro controlador");
+      this._productoServices.consultarCategoria()
+        .subscribe(
+          respuesta => {
+            console.log(respuesta);
+            for (let key$ in respuesta ) {
+              //console.log(respuesta[key$]);
+              let categoriaNew = respuesta[key$];
+              categoriaNew.id = key$;
+              this.listaCategorias.push(categoriaNew);
+
+            }
+            //console.log(this.listaCategorias);
+            return this.listaCategorias;
+          }
+        );
+      console.log(this.listaCategorias);
+
+      this._activatedRoute.params.subscribe(
+        parametros => {
+          this.id = parametros['id'];
+          if (this.id !== 'nuevo') {
+            this._productoServices.getProducto(this.id).subscribe(
+              resultado => {
+                this.producto = resultado;
+              }
+            );
+          }
+        }
+      );
+  }
 
   ngOnInit() {
+    console.log("registro ngOnInit");
   }
 
   guardar() {
-    console.log(this.producto);
-      this._productoServices.nuevoProducto(this.producto)
-        .subscribe(
-          resultado => {
-            console.log(resultado);
-            //this._router.navigate(['/manga', resultado.name ]);
-          }
-        );
+    //console.log(this.producto);
+    /*this._productoServices.nuevoProducto(this.producto)
+      .subscribe(
+        resultado => {
+          console.log(resultado);
+          //this._router.navigate(['/manga', resultado.name ]);
+        }
+      );
+*/
+    if (this.id == 'nuevo') {
+      // guardar pokemon nuevo
+      this._productoServices.nuevoProducto(this.producto).subscribe(
+        resultado => {
+          console.log(resultado.name);
+          this._router.navigate(['/menu']);
+        }
+      );
+    }else {
+      this._productoServices.editarProducto(this.producto, this.id).subscribe(
+        resultado => {
+          this._router.navigate(['/menu' ]);
+        }
+      );
+    }
   }
 }
