@@ -4,6 +4,7 @@ import { NavbarSistemaComponent } from '../navbar-sistema/navbar-sistema.compone
 import {Producto} from '../../../interfaces/registro.interface';
 import {ProductoService} from '../../../services/producto.service';
 import {Router, ActivatedRoute} from '@angular/router';
+import {UsuarioService} from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-registro',
@@ -17,10 +18,11 @@ export class RegistroComponent implements OnInit {
     nombre: "",
     precio: 0,
     descripcion: "",
-    imagen: ""
+    imagen: "",
+    owner: 0,
   }
 
-  constructor(private _productoServices: ProductoService,
+  constructor(private _usuarioServices: UsuarioService, private _productoServices: ProductoService,
               private _router: Router,
               private _activatedRoute: ActivatedRoute) {
     console.log("registro controlador");
@@ -31,7 +33,7 @@ export class RegistroComponent implements OnInit {
             for (let key$ in respuesta ) {
               //console.log(respuesta[key$]);
               let categoriaNew = respuesta[key$];
-              categoriaNew.id = key$;
+              categoriaNew.id = respuesta[key$].id;
               this.listaCategorias.push(categoriaNew);
 
             }
@@ -57,6 +59,11 @@ export class RegistroComponent implements OnInit {
 
   ngOnInit() {
     console.log("registro ngOnInit");
+    this._usuarioServices.isLogged().then((result:boolean)=>{
+      if (!result) {
+        this._router.navigate(['/login']);
+      }
+    })
   }
 
   guardar() {

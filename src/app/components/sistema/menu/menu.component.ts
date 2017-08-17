@@ -3,6 +3,7 @@ import { NavbarSistemaComponent } from '../navbar-sistema/navbar-sistema.compone
 import {Producto} from '../../../interfaces/registro.interface';
 import {ProductoService} from '../../../services/producto.service';
 import {Router, ActivatedRoute} from '@angular/router';
+import {UsuarioService} from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-menu',
@@ -13,7 +14,7 @@ export class MenuComponent implements OnInit {
 
   listaProductos: Producto [] = [];
 
-  constructor(private _productoServices: ProductoService) {
+  constructor(private _usuarioServices: UsuarioService, private _productoServices: ProductoService, private _router: Router) {
     this._productoServices.consultarProductos()
       .subscribe(
         respuesta => {
@@ -36,6 +37,12 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("registro ngOnInit");
+    this._usuarioServices.isLogged().then((result:boolean)=>{
+      if (!result) {
+        this._router.navigate(['/login']);
+      }
+    })
   }
 
   eliminar(id: string, posicion: number) {

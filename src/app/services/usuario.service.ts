@@ -7,7 +7,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class UsuarioService {
 
-  usuarioSails: string = ' http://port-1337.vinicioservidor-vynypm52876.codeanyapp.com/usuarios';
+  usuarioSails: string = 'http://port-1337.vinicioservidor-vynypm52876.codeanyapp.com/usuarios';
 
   constructor(private _http: Http) {
 
@@ -32,6 +32,7 @@ export class UsuarioService {
         }
       );
   }
+
 
   editarUsuario(producto: Usuario, id: string) {
     let body= JSON.stringify(producto);
@@ -64,6 +65,15 @@ export class UsuarioService {
           return res.json();
         }
       );
+  }
+
+  isLogged():Promise<boolean>{
+    if (typeof(Storage) !== 'undefined') {
+      if (sessionStorage.getItem('Usuario')) {
+        return Promise.resolve(true);
+      }
+    }
+    return Promise.resolve(false);
   }
 
 

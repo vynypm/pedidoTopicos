@@ -3,7 +3,7 @@
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col">
-      <h1 style="text-align: center">Registro de Productos</h1>
+      <h1 style="color: #161a51; text-align: center">Registro de Productos</h1>
     </div>
   </div>
   <br>
@@ -38,9 +38,9 @@
           </div>
           <div class="col">
             <select class="form-control"
-                    name="catergoria"
-                    [(ngModel)]="producto.categoria" >
-              <option *ngFor="let item of listaCategorias" [value]="item.nombre_categoria">{{item.nombre_categoria}}</option>
+                    name="owner"
+                    [(ngModel)]="producto.owner" >
+              <option *ngFor="let item of listaCategorias" [value]="item.id">{{item.nombre_categoria}}</option>
             </select>
           </div>
         </div>

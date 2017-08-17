@@ -29,6 +29,8 @@ import { UsuarioService } from './services/usuario.service';
 import { UsuarioFooterService } from './services/usuario.footer.service';
 import { AdministracionComponent } from './components/sistema/administracion/administracion.component';
 
+import {MessagesModule} from 'primeng/primeng';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +56,7 @@ import { AdministracionComponent } from './components/sistema/administracion/adm
     BrowserModule,
     FormsModule,
     HttpModule,
-    routing,
+    routing, MessagesModule
   ],
   providers: [
     ProductoService,

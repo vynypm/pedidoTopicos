@@ -3,6 +3,7 @@ import { Usuario } from '../../../interfaces/usuario.interface';
 import { UsuarioService } from '../../../services/usuario.service';
 import { NavbarSistemaComponent } from '../navbar-sistema/navbar-sistema.component';
 import {Router, ActivatedRoute} from '@angular/router';
+
 @Component({
   selector: 'app-usuarios',
   templateUrl: './usuarios.component.html',
@@ -48,7 +49,13 @@ export class UsuariosComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._usuarioService.isLogged().then((result:boolean)=>{
+      if (!result) {
+        this._router.navigate(['/login']);
+      }
+    })
   }
+
   guardar() {
 
     if (this.id == 'nuevo') {
