@@ -8,6 +8,7 @@ export class ProductoService {
 
   productosSails: string = 'http://port-1337.vinicioservidor-vynypm52876.codeanyapp.com/productos';
   categoriaSails: string = 'http://port-1337.vinicioservidor-vynypm52876.codeanyapp.com/categorias';
+  pedidosSails: string = 'http://port-1337.vinicioservidor-vynypm52876.codeanyapp.com/pedidos';
 
   constructor(private _http: Http) { }
 
@@ -30,6 +31,15 @@ export class ProductoService {
 
   consultarProductos() {
     return this._http.get(this.productosSails)
+      .map(
+        respuesta => {
+          return respuesta.json();
+        }
+      );
+  }
+
+  consultarPedidos() {
+    return this._http.get(this.pedidosSails)
       .map(
         respuesta => {
           return respuesta.json();
